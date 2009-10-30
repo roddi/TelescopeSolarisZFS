@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'parselog' target in the 'parselog' project.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
