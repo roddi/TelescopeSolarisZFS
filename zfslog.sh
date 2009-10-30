@@ -45,7 +45,12 @@ logRevisionsOfDir "src/cmd/zpool/" $TEMPLATE $OUTPUTPATH
 
 )
 
+# clean and build parselog
 xcodebuild -configuration Release clean
 xcodebuild -configuration Release build
 
+# call parselog
 build/Release/parselog /tmp/log.txt > "$HGSOURCEROOT/transmogrify.sh"
+
+# make executable
+chmod u+x "$HGSOURCEROOT/transmogrify.sh"
