@@ -61,8 +61,10 @@ int main (int argc, const char * argv[])
 	
 	{
 		NSString * outputString = @"";
-		outputString = [outputString stringByAppendingFormat:@"#!/bin/bash\n\n# automatically generated script. editing this is pretty pointless\n\n# initializing git repo\n"];
-		outputString = [outputString stringByAppendingFormat:@"git init\n\n"];
+		outputString = [outputString stringByAppendingFormat:@"#!/bin/bash\n\n# automatically generated script. editing this is pretty pointless\n\n# initializing git repo and adding .gitignore\n"];
+		outputString = [outputString stringByAppendingFormat:@"git init\n"];
+		outputString = [outputString stringByAppendingFormat:@"git add .gitignore\n"];
+		outputString = [outputString stringByAppendingFormat:@"git commit -m \"adding .gitignore\"\n\n"];
 		outputString = [outputString stringByAppendingFormat:@"#this checks out the needed revisions from hg and commits them to git\n"];
 		printf("%s", [outputString UTF8String]);
 		fullOutputString = [fullOutputString stringByAppendingString:outputString];		
@@ -78,7 +80,10 @@ int main (int argc, const char * argv[])
 		outputString = [outputString stringByAppendingFormat:@"echo \"hg checkout...\"\n", [revNumber intValue], counter, count];
 		outputString = [outputString stringByAppendingFormat:@"hg checkout -r %@ \n", [dict objectForKey:@"commitID"]];
 		
-		outputString = [outputString stringByAppendingFormat:@"echo \"git commit...\"\n", [revNumber intValue], counter, count];
+		outputString = [outputString stringByAppendingFormat:@"echo \"git add...\"\n", [revNumber intValue], counter, count];		
+ 		outputString = [outputString stringByAppendingFormat:@"git add src\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
+
+		outputString = [outputString stringByAppendingFormat:@"echo \"git commit...\"\n", [revNumber intValue], counter, count];		
  		outputString = [outputString stringByAppendingFormat:@"git commit -a -m \"%@ ---- hg commit id: %@ \"\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
 		outputString = [outputString stringByAppendingFormat:@"echo \" \"\n"];
 		outputString = [outputString stringByAppendingFormat:@"\n"];
