@@ -14,7 +14,7 @@ logRevisionsOfDir()
     echo "# will log ${subdir}"
     echo "# will log ${subdir}" >>  ${outputFile}
     hg log ${subdir} --template ${template} >> ${outputFile}
-}	
+}
 
 
 ##############################################################################
@@ -23,25 +23,25 @@ logRevisionsOfDir()
 #
 #
 
-HGSOURCEROOT="/Volumes/SolarisSource/onnv-gate/usr"
+HGSOURCEROOT="/Volumes/SolarisSource/onnv-gate/"
 echo "HGSOURCEROOT: $HGSOURCEROOT"
-TEMPLATE="{rev}:::{node}:::{desc|firstline}\n" 
+TEMPLATE="{rev}:::{node}:::{desc|firstline}\n"
 OUTPUTPATH="/tmp/log.txt"
 (
 cd $HGSOURCEROOT
 
 echo "# revisions" > $OUTPUTPATH
 
-logRevisionsOfDir "src/uts/common/fs/zfs/" $TEMPLATE $OUTPUTPATH
-logRevisionsOfDir "src/common/zfs/" $TEMPLATE $OUTPUTPATH
-logRevisionsOfDir "src/uts/common/sys/fs/zfs.h" $TEMPLATE $OUTPUTPATH
-logRevisionsOfDir "src/uts/common/sys/fm/fs/zfs.h" $TEMPLATE $OUTPUTPATH
-logRevisionsOfDir "src/lib/libzfs/common/" $TEMPLATE $OUTPUTPATH
-logRevisionsOfDir "src/cmd/zfs/" $TEMPLATE $OUTPUTPATH
-logRevisionsOfDir "src/cmd/zpool/" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/uts/common/fs/zfs/" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/common/zfs/" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/uts/common/sys/fs/zfs.h" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/uts/common/sys/fm/fs/zfs.h" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/lib/libzfs/common/" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/cmd/zfs/" $TEMPLATE $OUTPUTPATH
+logRevisionsOfDir "usr/src/cmd/zpool/" $TEMPLATE $OUTPUTPATH
 
 # this is -sort of- part of zfs (but will lead to many non-important changes)
-#logRevisionsOfDir "$HGSOURCEROOT/src/uts/common/sys/" $TEMPLATE $OUTPUTPATH
+#logRevisionsOfDir "$HGSOURCEROOT/usr/src/uts/common/sys/" $TEMPLATE $OUTPUTPATH
 
 )
 

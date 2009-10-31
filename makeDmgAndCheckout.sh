@@ -20,7 +20,7 @@ hdiutil attach "$DMGPATH.sparsebundle"
     cd "/Volumes/$VOLNAME"
 
     echo "checking out Solaris from $SRC"
-    hg clone $SRC
+    hg clone -U $SRC
 )
 
 echo "detaching dmg..."

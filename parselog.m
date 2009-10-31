@@ -81,7 +81,7 @@ int main (int argc, const char * argv[])
 		outputString = [outputString stringByAppendingFormat:@"hg checkout -r %@ \n", [dict objectForKey:@"commitID"]];
 		
 		outputString = [outputString stringByAppendingFormat:@"echo \"git add...\"\n", [revNumber intValue], counter, count];		
- 		outputString = [outputString stringByAppendingFormat:@"git add src\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
+ 		outputString = [outputString stringByAppendingFormat:@"git add usr/src\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
 
 		outputString = [outputString stringByAppendingFormat:@"echo \"git commit...\"\n", [revNumber intValue], counter, count];		
  		outputString = [outputString stringByAppendingFormat:@"git commit -a -m \"%@ ---- hg commit id: %@ \"\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
