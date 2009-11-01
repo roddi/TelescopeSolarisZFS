@@ -7,7 +7,7 @@ porting ZFS.
 
 ## Prerequisites
 
-You should have [git][git] and [mercurial][hg] before proceeding.
+You should have [git][git], [mercurial][hg] and the [mercurial convert extension][hgconvert] before proceeding. If you use mac ports read the Mac Ports Caveats section
 
 ## First-time Initialization
 
@@ -15,6 +15,11 @@ First, make sure you've got the hg fast-export submodules:
 
     git submodule init
     git submodule update
+
+in ~/.hgrc add:
+    
+    [extensions]
+    hgext.convert=
 
 ## Cloning OpenSolaris
 
@@ -45,5 +50,16 @@ that has all of the stuff you need and nothing you don't.
 This step takes about an hour on my macbook pro.
 
 
+## Mac Ports Caveat
+
+If you installed Mercurial with Mac Ports you will have to change the following:
+
+in fast-export/hg-fast-export.py the first line to:
+    
+    #!/usr/bin/env /opt/local/bin/python
+
+
 [git]: http://git-scm.com/
 [hg]: http://www.selenic.com/mercurial/
+[hgconvert]: http://mercurial.selenic.com/wiki/ConvertExtension
+
