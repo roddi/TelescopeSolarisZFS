@@ -1,0 +1,11 @@
+#!/bin/sh
+
+SRC=ssh://anon@hg.opensolaris.org/hg/onnv/onnv-gate
+
+if [ $# -gt 0 ]
+then
+    SRC=$1
+fi
+
+echo "checking out Solaris from $SRC"
+hg clone -U $SRC onnv-gate

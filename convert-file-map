@@ -1,0 +1,151 @@
+# zfs_common
+
+include usr/src/common/avl
+rename usr/src/common/avl zfs_common/avl
+
+
+include usr/src/head/libintl.h
+rename usr/src/head zfs_common/head
+
+
+include usr/src/common/nvpair
+rename usr/src/common/nvpair zfs_common/nvpair
+
+
+include usr/src/uts/common/rpc
+rename usr/src/uts/common/rpc zfs_common/rpc
+
+
+include usr/src/uts/common/sys/acl.h
+include usr/src/uts/common/sys/sunddi.h
+include usr/src/uts/common/sys/atomic.h
+include usr/src/uts/common/sys/sysmacros.h
+include usr/src/uts/common/sys/avl.h
+include usr/src/uts/common/sys/inttypes.h
+include usr/src/uts/common/sys/systeminfo.h
+include usr/src/uts/common/sys/avl_impl.h
+include usr/src/uts/common/sys/kmem.h
+include usr/src/uts/common/sys/taskq.h
+include usr/src/uts/common/sys/bitmap.h
+include usr/src/uts/common/sys/kmem_impl.h
+include usr/src/uts/common/sys/taskq_impl.h
+include usr/src/uts/common/sys/bootstat.h
+include usr/src/uts/common/sys/kobj.h
+include usr/src/uts/common/sys/thread.h
+include usr/src/uts/common/sys/byteorder.h
+include usr/src/uts/common/sys/kstat.h
+include usr/src/uts/common/sys/types.h
+include usr/src/uts/common/sys/callb.h
+include usr/src/uts/common/sys/list.h
+include usr/src/uts/common/sys/utsname.h
+include usr/src/uts/common/sys/cmn_err.h
+include usr/src/uts/common/sys/list_impl.h
+include usr/src/uts/common/sys/va_list.h
+include usr/src/uts/common/sys/compress.h
+include usr/src/uts/common/sys/mntent.h
+include usr/src/uts/common/sys/vfs.h
+include usr/src/uts/common/sys/cred.h
+include usr/src/uts/common/sys/mnttab.h
+include usr/src/uts/common/sys/debug.h
+include usr/src/uts/common/sys/mutex.h
+include usr/src/uts/common/sys/vmem.h
+include usr/src/uts/common/sys/dkio.h
+include usr/src/uts/common/sys/nvpair.h
+include usr/src/uts/common/sys/vmsystm.h
+include usr/src/uts/common/sys/dnlc.h
+include usr/src/uts/common/sys/nvpair_impl.h
+include usr/src/uts/common/sys/zmod.h
+include usr/src/uts/common/sys/feature_tests.h
+include usr/src/uts/common/sys/pathname.h
+include usr/src/uts/common/sys/zone.h
+
+include usr/src/uts/common/sys/fs/zfs.h
+include usr/src/uts/common/sys/fs/swapnode.h
+include usr/src/uts/common/sys/fm/fs/
+
+rename usr/src/uts/common/sys zfs_common/sys
+
+
+include usr/src/common/util/qsort.c
+include usr/src/common/util/qsort.h
+
+rename usr/src/common/util zfs_common/util
+
+
+include usr/src/common/zfs
+
+rename usr/src/common/zfs zfs_common/zfs
+
+# End of zfs_common
+
+# zfs_kext
+
+include usr/src/uts/common/fs/zfs
+rename usr/src/uts/common/fs/zfs zfs_kext/zfs
+
+
+include usr/src/uts/common/os/callb.c
+include usr/src/uts/common/os/kmem.c
+include usr/src/uts/common/os/list.c
+include usr/src/uts/common/os/nvpair_alloc_system.c
+include usr/src/uts/common/os/taskq.c
+
+rename usr/src/uts/common/os zfs_kext/os
+
+
+include usr/src/uts/common/rpc/xdr.c
+include usr/src/uts/common/rpc/xdr_array.c
+include usr/src/uts/common/rpc/xdr_mem.c
+
+rename usr/src/uts/common/rpc zfs_kext/rpc
+
+# end of zfs_kext
+
+# zfs_commands
+
+include usr/src/cmd/zfs
+include usr/src/cmd/zpool
+
+rename usr/src/cmd zfs_commands
+
+# end of zfs_commands
+
+# zfs_lib
+
+include usr/src/head/devid.h
+rename usr/src/head/devid.h zfs_lib/devid.h
+
+include usr/src/lib/libdevid/libdevid.h
+include usr/src/lib/libdevid/deviceid.c
+rename usr/src/lib/libdevid zfs_lib/libdevid
+
+include usr/src/common/devid/devid.c
+include usr/src/common/devid/devid_impl.h
+rename usr/src/common/devid zfs_lib/libdevid
+
+
+include usr/src/lib/libgen/common
+rename usr/src/lib/libgen/common zfs_lib/libgen
+
+include usr/src/lib/libnsl/rpc/mt.h
+include usr/src/lib/libnsl/rpc/rpc_mt.h
+include usr/src/lib/libnsl/rpc/xdr.c
+include usr/src/lib/libnsl/rpc/xdr_array.c
+include usr/src/lib/libnsl/rpc/xdr_mem.c
+
+rename usr/src/lib/libnsl zfs_lib/libnsl
+
+
+include usr/src/lib/libnvpair
+rename usr/src/lib/libnvpair zfs_lib/libnvpair
+
+
+include usr/src/lib/libuutil/common/
+rename usr/src/lib/libuutil/common/ zfs_lib/libuutil
+
+
+include usr/src/lib/libzfs/common
+rename usr/src/lib/libzfs/common zfs_lib/libzfs
+
+# end of zfs_lib
+

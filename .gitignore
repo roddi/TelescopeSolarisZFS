@@ -2,3 +2,6 @@ OpenSolaris.sparsebundle
 build
 .DS_Store
 *~
+onnv-gate
+zfs-converted-*
+
