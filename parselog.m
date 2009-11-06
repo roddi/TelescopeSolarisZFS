@@ -19,67 +19,27 @@ int main (int argc, const char * argv[])
 	
 	NSArray * lines = [log componentsSeparatedByString:@"\n"];
 	
-	NSMutableDictionary * commits = [NSMutableDictionary dictionary];
-	for (NSString * line in lines)
-	{
-		NSArray * lineComponents = [line componentsSeparatedByString:@":::"];
-		if ([line hasPrefix:@"#"] || [lineComponents count] < 2)
-		{
-			NSLog (@"skipping line: %@", line);
-			continue;
-		}
-		
-		NSString * revision = [lineComponents objectAtIndex:0];
-		NSString * commitID = [lineComponents objectAtIndex:1];
-		NSString * message = @"";
-		if ([lineComponents count] > 2)
-			message = [lineComponents objectAtIndex:2];
-		
-		message = [message stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
-		
-		NSNumber * revisionNumber = [NSNumber numberWithInteger:[revision integerValue]];
-		
-		if ([commits objectForKey:revisionNumber])
-		{
-			if (![commitID isEqualToString:[[commits objectForKey:revisionNumber] objectForKey:@"commitID"]])
-				NSLog(@"COMMIT ID MISMATCH: rev%@: %@(known) != %@(new)", [revisionNumber description], [[commits objectForKey:revision] objectForKey:@"commitID"], commitID);
-		}		
-		else
-		{
-			NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-			[dict setObject:commitID forKey:@"commitID"];
-			[dict setObject:message forKey:@"message"];
-			
-			[commits setObject:dict forKey:revisionNumber];
-		}
-	}
-
-	NSArray * sortedRevs = [[commits allKeys] sortedArrayUsingSelector:@selector(compare:)];
 	unsigned int counter = 1;
-	unsigned int count = [sortedRevs count];
+	unsigned int count = [lines count];
 	NSString * fullOutputString = @"";
 	
 	{
 		NSString * outputString = @"";
-		outputString = [outputString stringByAppendingFormat:@"#!/bin/bash\n\n# automatically generated script. editing this is pretty pointless\n\n# initializing git repo and adding .gitignore\n"];
-		outputString = [outputString stringByAppendingFormat:@"git init\n"];
-		outputString = [outputString stringByAppendingFormat:@"git add .gitignore\n"];
-		outputString = [outputString stringByAppendingFormat:@"git commit -m \"adding .gitignore\"\n\n"];
-		outputString = [outputString stringByAppendingFormat:@"#this checks out the needed revisions from hg and commits them to git\n"];
+		outputString = [outputString stringByAppendingFormat:@"#!/bin/bash\n\n# automatically generated script. editing this is pretty pointless\n\n"];
+		outputString = [outputString stringByAppendingFormat:@"MACZFSPATH=/\n\n"];
 		printf("%s", [outputString UTF8String]);
 		fullOutputString = [fullOutputString stringByAppendingString:outputString];		
 	}
 	
-	for (NSString * revNumber in sortedRevs)
-	{
-		NSMutableDictionary * dict = [commits objectForKey:revNumber];
-		
+	for (NSString * line in lines)
+	{	
+		NSString * commitID = [line stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 		NSString * outputString = @"";
-		outputString = [outputString stringByAppendingFormat:@"echo \"--- Revision: %d (%d/%d) --- \"\n", [revNumber intValue], counter, count];
+		outputString = [outputString stringByAppendingFormat:@"echo \"--- Revision: %d (%d/%d) --- \"\n", commitID, counter, count];
 
-		outputString = [outputString stringByAppendingFormat:@"echo \"hg checkout...\"\n", [revNumber intValue], counter, count];
-		outputString = [outputString stringByAppendingFormat:@"hg checkout -r %@ \n", [dict objectForKey:@"commitID"]];
-		
+		outputString = [outputString stringByAppendingFormat:@"echo \"checkout...\"\n"];
+		outputString = [outputString stringByAppendingFormat:@"git checkout %@", commitID];
+/*		
 		outputString = [outputString stringByAppendingFormat:@"echo \"git add...\"\n", [revNumber intValue], counter, count];		
  		outputString = [outputString stringByAppendingFormat:@"git add usr/src\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
 
@@ -87,7 +47,7 @@ int main (int argc, const char * argv[])
  		outputString = [outputString stringByAppendingFormat:@"git commit -a -m \"%@ ---- hg commit id: %@ \"\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
 		outputString = [outputString stringByAppendingFormat:@"echo \" \"\n"];
 		outputString = [outputString stringByAppendingFormat:@"\n"];
-		
+*/		
 		printf("%s", [outputString UTF8String]);
 		fullOutputString = [fullOutputString stringByAppendingString:outputString];
 		counter++;
