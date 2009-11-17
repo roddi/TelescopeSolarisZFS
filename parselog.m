@@ -24,13 +24,27 @@ void generateDiffingScript(NSArray * inCommits)
 	// object: onnv / key: mac-zfs
 	NSDictionary * onnvPathsForMacZFSPaths = [NSDictionary dictionaryWithObjectsAndKeys:
 											  @"zfs_kext/zfs/zfs_vnops.c", @"zfs_kext/zfs/zfs_vnops.c",
+											  @"zfs_kext/zfs/zfs_vfsops.c", @"zfs_kext/zfs/zfs_vfsops.c",
 											  @"zfs_kext/zfs/spa.c", @"zfs_kext/zfs/spa.c",
+											  @"zfs_kext/zfs/arc.c", @"zfs_kext/zfs/arc.c",
+											  @"zfs_kext/zfs/dnode.c", @"zfs_kext/zfs/dnode.c",
+											  @"zfs_kext/zfs/refcount.c", @"zfs_kext/zfs/refcount.c",
+											  @"zfs_kext/zfs/sha256.c", @"zfs_kext/zfs/sha256.c",
+											  @"zfs_kext/os/kmem.c", @"zfs_kext/os/kmem.c",
+											  @"zfs_kext/os/taskq.c", @"zfs_kext/os/taskq.c",
+											  
 											  @"zfs_commands/zfs/zfs_main.c", @"zfs_commands/zfs/zfs_main.c",
 											  @"zfs_commands/zfs/zfs_iter.c", @"zfs_commands/zfs/zfs_iter.c",
+											  
 											  @"zfs_commands/zpool/zpool_main.c", @"zfs_commands/zpool/zpool_main.c",
 											  @"zfs_commands/zpool/zpool_util.c", @"zfs_commands/zpool/zpool_util.c",
+											  @"zfs_commands/zpool/zpool_vdef.c", @"zfs_commands/zpool/zpool_vdev.c",
+											  
 											  @"zfs_common/zfs/zfs_prop.c", @"zfs_common/zfs/zfs_prop.c",
 											  @"zfs_common/zfs/zfs_prop.h", @"zfs_common/zfs/zfs_prop.h",
+											  
+											  @"zfs_common/avl/avl.c", @"zfs_common/avl/avl.c",
+											  
 											  @"zfs_lib/libzfs/libzfs_dataset.c", @"zfs_lib/libzfs/libzfs_dataset.c",
 											  nil];
 	
