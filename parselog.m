@@ -22,31 +22,42 @@ void generateDiffingScript(NSArray * inCommits)
 	}
 	
 	// object: onnv / key: mac-zfs
-	NSDictionary * onnvPathsForMacZFSPaths = [NSDictionary dictionaryWithObjectsAndKeys:
-											  @"zfs_kext/zfs/zfs_vnops.c", @"zfs_kext/zfs/zfs_vnops.c",
-											  @"zfs_kext/zfs/zfs_vfsops.c", @"zfs_kext/zfs/zfs_vfsops.c",
-											  @"zfs_kext/zfs/spa.c", @"zfs_kext/zfs/spa.c",
-											  @"zfs_kext/zfs/arc.c", @"zfs_kext/zfs/arc.c",
-											  @"zfs_kext/zfs/dnode.c", @"zfs_kext/zfs/dnode.c",
-											  @"zfs_kext/zfs/refcount.c", @"zfs_kext/zfs/refcount.c",
-											  @"zfs_kext/zfs/sha256.c", @"zfs_kext/zfs/sha256.c",
-											  @"zfs_kext/os/kmem.c", @"zfs_kext/os/kmem.c",
-											  @"zfs_kext/os/taskq.c", @"zfs_kext/os/taskq.c",
-											  
-											  @"zfs_commands/zfs/zfs_main.c", @"zfs_commands/zfs/zfs_main.c",
-											  @"zfs_commands/zfs/zfs_iter.c", @"zfs_commands/zfs/zfs_iter.c",
-											  
-											  @"zfs_commands/zpool/zpool_main.c", @"zfs_commands/zpool/zpool_main.c",
-											  @"zfs_commands/zpool/zpool_util.c", @"zfs_commands/zpool/zpool_util.c",
-											  @"zfs_commands/zpool/zpool_vdef.c", @"zfs_commands/zpool/zpool_vdev.c",
-											  
-											  @"zfs_common/zfs/zfs_prop.c", @"zfs_common/zfs/zfs_prop.c",
-											  @"zfs_common/zfs/zfs_prop.h", @"zfs_common/zfs/zfs_prop.h",
-											  
-											  @"zfs_common/avl/avl.c", @"zfs_common/avl/avl.c",
-											  
-											  @"zfs_lib/libzfs/libzfs_dataset.c", @"zfs_lib/libzfs/libzfs_dataset.c",
-											  nil];
+	NSDictionary * onnvPathsForMacZFSPaths = 
+	[NSDictionary dictionaryWithObjectsAndKeys:
+	 @"zfs_commands/zfs/zfs_main.c", @"zfs_commands/zfs/zfs_main.c",
+	 @"zfs_commands/zfs/zfs_iter.c", @"zfs_commands/zfs/zfs_iter.c",
+	 
+	 @"zfs_commands/zpool/zpool_main.c", @"zfs_commands/zpool/zpool_main.c",
+	 @"zfs_commands/zpool/zpool_util.c", @"zfs_commands/zpool/zpool_util.c",
+	 @"zfs_commands/zpool/zpool_vdef.c", @"zfs_commands/zpool/zpool_vdev.c",
+	 
+	 @"zfs_commands/ztest/ztest.c", @"zfs_commands/ztest/ztest.c",
+	 
+	 @"zfs_common/zfs/zfs_prop.c", @"zfs_common/zfs/zfs_prop.c",
+	 @"zfs_common/zfs/zfs_prop.h", @"zfs_common/zfs/zfs_prop.h",
+	 
+	 @"zfs_common/avl/avl.c", @"zfs_common/avl/avl.c",
+	 
+	 @"zfs_kext/os/kmem.c", @"zfs_kext/os/kmem.c",
+	 @"zfs_kext/os/taskq.c", @"zfs_kext/os/taskq.c",
+	 
+	 @"zfs_kext/zfs/sys/arc.h", @"zfs_kext/zfs/sys/arc.h",
+	 @"zfs_kext/zfs/sys/dmu.h", @"zfs_kext/zfs/sys/dmu.h",
+	 
+	 @"zfs_kext/zfs/spa.c", @"zfs_kext/zfs/spa.c",
+	 @"zfs_kext/zfs/arc.c", @"zfs_kext/zfs/arc.c",
+	 @"zfs_kext/zfs/dnode.c", @"zfs_kext/zfs/dnode.c",
+	 @"zfs_kext/zfs/zfs_ioctl.c",@"zfs_kext/zfs/zfs_ioctl.c",
+	 @"zfs_kext/zfs/refcount.c", @"zfs_kext/zfs/refcount.c",
+	 @"zfs_kext/zfs/sha256.c", @"zfs_kext/zfs/sha256.c",
+	 @"zfs_kext/zfs/zfs_acl.c", @"zfs_kext/zfs/zfs_acl.c",
+	 @"zfs_kext/zfs/zfs_vnops.c", @"zfs_kext/zfs/zfs_vnops.c",
+	 @"zfs_kext/zfs/zfs_vfsops.c", @"zfs_kext/zfs/zfs_vfsops.c",
+	 
+	 
+	 @"zfs_lib/libzfs/libzfs.h", @"zfs_lib/libzfs/libzfs.h",
+	 @"zfs_lib/libzfs/libzfs_dataset.c", @"zfs_lib/libzfs/libzfs_dataset.c",
+	 nil];
 	
 	for (NSString * commitID in inCommits)
 	{	
@@ -162,9 +173,11 @@ int main (int argc, const char * argv[])
 		
 		NSString * commitMessage = [components componentsJoinedByString:@" "];
 		commitMessage = [commitMessage stringByReplacingOccurrencesOfString:@"," withString:@"_"];
-		if ([commitMessage length] > 60)
+
+		const NSUInteger kMaxLen = 50;
+		if ([commitMessage length] > kMaxLen)
 		{
-			commitMessage = [commitMessage substringToIndex:60];
+			commitMessage = [commitMessage substringToIndex:kMaxLen];
 		}
 		
 		[commitIDs addObject:commitID];
