@@ -148,5 +148,9 @@ rename usr/src/lib/libuutil/common/ zfs_lib/libuutil
 include usr/src/lib/libzfs/common
 rename usr/src/lib/libzfs/common zfs_lib/libzfs
 
+include usr/src/lib/libpool/common
+rename usr/src/lib/libzfs/common zfs_lib/libzpool
+
+
 # end of zfs_lib
 
