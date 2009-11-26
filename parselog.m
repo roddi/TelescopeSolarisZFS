@@ -77,15 +77,6 @@ void generateDiffingScript(NSArray * inCommits)
 							maczfsPath, 
 							commitID];	
 		}
-		/*		
-		 outputString = [outputString stringByAppendingFormat:@"echo \"git add...\"\n", [revNumber intValue], counter, count];		
-		 outputString = [outputString stringByAppendingFormat:@"git add usr/src\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
-		 
-		 outputString = [outputString stringByAppendingFormat:@"echo \"git commit...\"\n", [revNumber intValue], counter, count];		
-		 outputString = [outputString stringByAppendingFormat:@"git commit -a -m \"%@ ---- hg commit id: %@ \"\n", [dict objectForKey:@"message"], [dict objectForKey:@"commitID"]];
-		 outputString = [outputString stringByAppendingFormat:@"echo \" \"\n"];
-		 outputString = [outputString stringByAppendingFormat:@"\n"];
-		 */		
 		printf("%s", [outputString UTF8String]);
 		fullOutputString = [fullOutputString stringByAppendingString:outputString];
 		counter++;
