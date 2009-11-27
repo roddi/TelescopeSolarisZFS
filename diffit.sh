@@ -15,14 +15,17 @@
     # onnv_69: 2007-07-10
     # onnv_70: 2007-07-24
     # onnv_71: 2007-08-07
+    # original Apple branch: 2007-08-14
     # onnv_72: 2007-08-18
     # onnv_73: 2007-09-04
     # onnv_74: 2007-09-17
+    # onnv_75: 2007-09-29
+    # onnv_76: 2007-10-11
+    # onnv_77: 2007-10-30
+    # onnv_78: 2007-11-10
+    # onnv_79: 2007-11-28
     
-    git log --since=2007-03-18 --until=2007-10-31 --pretty=oneline --date-order --reverse  > /tmp/log.txt
-
-    #git log --since=2007-06-24 --until=2007-10-31 --pretty=oneline --date-order --reverse  > /tmp/log.txt
-    #git log --since=2007-08-09 --until=2007-09-17 --pretty=oneline --date-order --reverse  > /tmp/log.txt
+    git log --since=2007-08-14 --until=2007-10-11 --pretty=oneline --date-order --reverse  > /tmp/log.txt
 )
 
 xcodebuild -configuration Release clean

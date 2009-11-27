@@ -11,7 +11,7 @@ void generateDiffingScript(NSArray * inCommits)
 	{
 		NSString * outputString = @"";
 		outputString = [outputString stringByAppendingFormat:@"#!/bin/bash\n\n# This is an automatically generated script. editing is pretty pointless\n\n"];
-		outputString = [outputString stringByAppendingFormat:@"MACZFSPATH=\"../../mac-zfs\"\n"];
+		outputString = [outputString stringByAppendingFormat:@"MACZFSPATH=\"../../mac-zfs/upstream/opensolaris\"\n"];
 		outputString = [outputString stringByAppendingFormat:@"ONNVPATH=\".\"\n"];
 		outputString = [outputString stringByAppendingFormat:@"TEMPFILEPATH=\"%@\"\n\n", bigDifferPath];
 		outputString = [outputString stringByAppendingFormat:@"echo \"making directory $TEMPFILEPATH\"\n"];
@@ -24,39 +24,39 @@ void generateDiffingScript(NSArray * inCommits)
 	// object: onnv / key: mac-zfs
 	NSDictionary * onnvPathsForMacZFSPaths = 
 	[NSDictionary dictionaryWithObjectsAndKeys:
-	 @"zfs_commands/zfs/zfs_main.c", @"zfs_commands/zfs/zfs_main.c",
-	 @"zfs_commands/zfs/zfs_iter.c", @"zfs_commands/zfs/zfs_iter.c",
+	 @"usr/src/cmd/zfs/zfs_main.c", @"cmd/zfs/zfs_main.c",
+	 @"usr/src/cmd/zfs/zfs_iter.c", @"cmd/zfs/zfs_iter.c",
 	 
-	 @"zfs_commands/zpool/zpool_main.c", @"zfs_commands/zpool/zpool_main.c",
-	 @"zfs_commands/zpool/zpool_util.c", @"zfs_commands/zpool/zpool_util.c",
-	 @"zfs_commands/zpool/zpool_vdef.c", @"zfs_commands/zpool/zpool_vdev.c",
+	 @"usr/src/cmd/zpool/zpool_main.c", @"cmd/zpool/zpool_main.c",
+	 @"usr/src/cmd/zpool/zpool_util.c", @"cmd/zpool/zpool_util.c",
+	 @"usr/src/cmd/zpool/zpool_vdef.c", @"cmd/zpool/zpool_vdev.c",
 	 
-	 @"zfs_commands/ztest/ztest.c", @"zfs_commands/ztest/ztest.c",
+	 @"usr/src/cmd/ztest/ztest.c", @"cmd/ztest/ztest.c",
 	 
-	 @"zfs_common/zfs/zfs_prop.c", @"zfs_common/zfs/zfs_prop.c",
-	 @"zfs_common/zfs/zfs_prop.h", @"zfs_common/zfs/zfs_prop.h",
+	 @"usr/src/common/zfs/zfs_prop.c", @"common/zfs/zfs_prop.c",
+	 @"usr/src/common/zfs/zfs_prop.h", @"common/zfs/zfs_prop.h",
 	 
-	 @"zfs_common/avl/avl.c", @"zfs_common/avl/avl.c",
+	 @"usr/src/common/avl/avl.c", @"common/avl/avl.c",
 	 
-	 @"zfs_kext/os/kmem.c", @"zfs_kext/os/kmem.c",
-	 @"zfs_kext/os/taskq.c", @"zfs_kext/os/taskq.c",
+	 @"usr/src/uts/common/os/kmem.c", @"uts/common/os/kmem.c",
+	 @"usr/src/uts/common/os/taskq.c", @"uts/common/os/taskq.c",
 	 
-	 @"zfs_kext/zfs/sys/arc.h", @"zfs_kext/zfs/sys/arc.h",
-	 @"zfs_kext/zfs/sys/dmu.h", @"zfs_kext/zfs/sys/dmu.h",
+	 @"usr/src/uts/common/fs/zfs/sys/arc.h", @"uts/common/fs/zfs/sys/arc.h",
+	 @"usr/src/uts/common/fs/zfs/sys/dmu.h", @"uts/common/fs/zfs/sys/dmu.h",
 	 
-	 @"zfs_kext/zfs/spa.c", @"zfs_kext/zfs/spa.c",
-	 @"zfs_kext/zfs/arc.c", @"zfs_kext/zfs/arc.c",
-	 @"zfs_kext/zfs/dnode.c", @"zfs_kext/zfs/dnode.c",
-	 @"zfs_kext/zfs/zfs_ioctl.c",@"zfs_kext/zfs/zfs_ioctl.c",
-	 @"zfs_kext/zfs/refcount.c", @"zfs_kext/zfs/refcount.c",
-	 @"zfs_kext/zfs/sha256.c", @"zfs_kext/zfs/sha256.c",
-	 @"zfs_kext/zfs/zfs_acl.c", @"zfs_kext/zfs/zfs_acl.c",
-	 @"zfs_kext/zfs/zfs_vnops.c", @"zfs_kext/zfs/zfs_vnops.c",
-	 @"zfs_kext/zfs/zfs_vfsops.c", @"zfs_kext/zfs/zfs_vfsops.c",
+	 @"usr/src/uts/common/fs/zfs/spa.c", @"uts/common/fs/zfs/spa.c",
+	 @"usr/src/uts/common/fs/zfs/arc.c", @"uts/common/fs/zfs/arc.c",
+	 @"usr/src/uts/common/fs/zfs/dnode.c", @"uts/common/fs/zfs/dnode.c",
+	 @"usr/src/uts/common/fs/zfs/zfs_ioctl.c",@"uts/common/fs/zfs/zfs_ioctl.c",
+	 @"usr/src/uts/common/fs/zfs/refcount.c", @"uts/common/fs/zfs/refcount.c",
+	 @"usr/src/uts/common/fs/zfs/sha256.c", @"uts/common/fs/zfs/sha256.c",
+	 @"usr/src/uts/common/fs/zfs/zfs_acl.c", @"uts/common/fs/zfs/zfs_acl.c",
+	 @"usr/src/uts/common/fs/zfs/zfs_vnops.c", @"uts/common/fs/zfs/zfs_vnops.c",
+	 @"usr/src/uts/common/fs/zfs/zfs_vfsops.c", @"uts/common/fs/zfs/zfs_vfsops.c",
 	 
 	 
-	 @"zfs_lib/libzfs/libzfs.h", @"zfs_lib/libzfs/libzfs.h",
-	 @"zfs_lib/libzfs/libzfs_dataset.c", @"zfs_lib/libzfs/libzfs_dataset.c",
+	 @"usr/src/lib/libzfs/common/libzfs.h", @"lib/libzfs/libzfs.h",
+	 @"usr/src/lib/libzfs/common/libzfs_dataset.c", @"lib/libzfs/libzfs_dataset.c",
 	 nil];
 	
 	for (NSString * commitID in inCommits)
