@@ -24,8 +24,31 @@
     # onnv_77: 2007-10-30
     # onnv_78: 2007-11-10
     # onnv_79: 2007-11-28
+
+    # onnv_80: 2007-12-11
+    # onnv_81: 2008-01-08
+    # onnv_82: 2008-01-23
+    # onnv_83: 2008-02-01
+    # onnv_84: 2008-02-19
+    # onnv_85: 2008-03-03
+    # onnv_86: 2008-03-12
+    # onnv_87: 2008-03-28
+    # onnv_88: 2008-04-15
+    # onnv_89: 2008-04-28
+
+    # onnv_90: 2008-05-12
+    # onnv_91: 2008-05-28
+    # onnv_92: 2008-06-07
+    # onnv_93: 2008-06-19
+    # onnv_94: 2008-07-08
+
+    # onnv_95: 2008-07-22
+    # onnv_96: 2008-08-05
+    # onnv_97: 2008-08-19
+    # onnv_98: 2008-09-03
+    # onnv_99: 2008-09-15
     
-    git log --since=2007-08-14 --until=2007-10-11 --pretty=oneline --date-order --reverse  > /tmp/log.txt
+    git log --since=2008-04-12 --until=2008-08-21 --pretty=oneline --date-order --reverse  > /tmp/log.txt
 )
 
 xcodebuild -configuration Release clean
